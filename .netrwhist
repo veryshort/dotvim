@@ -1,0 +1,5 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_1='/home/bongjoon/prog/angular/welcome-msg-app'
+let g:netrw_dirhist_2='/home/bongjoon/prog/angular'
+let g:netrw_dirhist_3='/home/bongjoon/prog/angular/ch02'

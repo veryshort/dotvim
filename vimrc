@@ -1,3 +1,17 @@
+
+"------------------------
+"pathogen.vim
+"
+" 2018-04-22
+" http://vimcasts.org/episodes/synchronizing-plugins-with-git-submodules-and-pathogen/
+"------------------------
+  call pathogen#runtime_append_all_bundles()
+  call pathogen#helptags()
+  "execute pathogen#infect()
+  "syntax on
+  "filetype plugin indent on
+"------------------------
+
 " set ci
 set smartindent
 " filetyp indent on
@@ -51,13 +65,6 @@ set laststatus=0
   nnoremap <c-n> :bn<cr>
 " nnoremap <c-p> :bp<cr>
 " nnoremap <c-m> :bp<cr>
-
-"------------------------
-"pathogen.vim
-"------------------------
-  execute pathogen#infect()
-  syntax on
-  filetype plugin indent on
 
 "-------------------------------
 " Learn Vim script the Hard Way

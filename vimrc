@@ -5,7 +5,8 @@
 " 2018-04-22
 " http://vimcasts.org/episodes/synchronizing-plugins-with-git-submodules-and-pathogen/
 "------------------------
-  call pathogen#runtime_append_all_bundles()
+  "call pathogen#runtime_append_all_bundles()
+  call pathogen#infect()
   call pathogen#helptags()
   "execute pathogen#infect()
   "syntax on
@@ -28,6 +29,8 @@ set incsearch
 set nohlsearch
 if !has('nvim')
     colorscheme torte
+    set wildmenu
+    "set wildmode=longest,list,full
 else
     colorscheme CodeSchool3
     "colorscheme jellybeans
@@ -35,17 +38,22 @@ else
     set termguicolors
 endif
 
-nnoremap g[. :cd %:p:h<CR>
-nnoremap Q 0yt=A<C-r>=<C-r>"<CR><Esc>
-"nnoremap g[= 0yt=A<C-r>=<C-r>"<CR><Esc>
-" nnoremap \= 0yt=A<C-r>=<C-r>"<CR><Esc>
 autocmd BufEnter * if expand("%:p:h") !~ '^/tmp' | silent! lcd %:p:h | endif
 
 set runtimepath+=/home/bongjoon/viml/mpc/
 set laststatus=2
-set laststatus=0
+" set laststatus=0
 " set statusline=
 " set statusline+=\ %f
+set hidden
+"-------------------------------
+" key mapping
+"-------------------------------
+" {{{
+nnoremap g[. :cd %:p:h<CR>
+nnoremap Q 0yt=A<C-r>=<C-r>"<CR><Esc>
+"nnoremap g[= 0yt=A<C-r>=<C-r>"<CR><Esc>
+" nnoremap \= 0yt=A<C-r>=<C-r>"<CR><Esc>
 
   nnoremap <C-S> :w<CR>
   inoremap <C-S> <Esc>:w<CR>
@@ -54,7 +62,7 @@ set laststatus=0
 
 " 2018-04-12
   " nnoremap <C-X> :bro ol<CR>
-  nnoremap <C-F2> <Esc>:bro ol<CR>
+  nnoremap <C-F2> :bro ol<CR>
 " inoremap jk <Esc>
   nnoremap <C-k> :bro ol<CR>
   inoremap kk <Esc>:bro ol<CR>
@@ -65,11 +73,14 @@ set laststatus=0
   nnoremap <c-n> :bn<cr>
 " nnoremap <c-p> :bp<cr>
 " nnoremap <c-m> :bp<cr>
+" }}}
+"-------------------------------<
+
 
 "-------------------------------
 " Learn Vim script the Hard Way
 "-------------------------------
-
+" {{{
   let mapleader = " "
   " nnoremap <leader>d dd
   " <c-u> : delete text to the origin of line
@@ -99,30 +110,64 @@ set laststatus=0
     nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lel
     inoremap jk <Esc>
     inoremap <esc> <nop>
-"-------------------------------
+
+  " 2018-04-22
+    augroup filetype_python
+      autocmd!
+      autocmd FileType python     :iabbrev <buffer> iff if:<left>
+    augroup END
+
+    augroup filetype_javascript
+      autocmd!
+      autocmd FileType javascript :iabbrev <buffer> iff if ()<left>
+    augroup END
+
+    set statusline=%f     " Path to the file
+    set statusline+=%=    " Switch to the right side
+    set statusline+=%l    " Current line
+    set statusline+=/     " Separator
+    set statusline+=%L    " Total lines
+" Vimscript file settings -------------------- {{{
+    augroup filetype_vim
+      autocmd!
+      autocmd FileType vim setlocal foldmethod=marker
+    augroup END
+" }}}
+" }}}
+"------------------------------->
 
 
 "-------------------------------
 " CtrlP
 "-------------------------------
-  " 2018-04-20
+  " 2018-04-20 {{{
     set runtimepath^=~/.vim/bundle/ctrlp.vim
   " 2018-04-21
     nnoremap <leader>cb :CtrlPBuffer<cr>
     nnoremap <leader>cr :CtrlPMRU<cr>
+" }}}
+"------------------------------->
 
-"-------------------------------
-
-noremap <leader>ne :e.<cr>
+" Color scheme
+" {{{
+nnoremap <leader>ne :e.<cr>
+nnoremap <leader>clc :colorscheme CodeSchool3<cr>
+nnoremap <leader>cld :colorscheme dracula<cr>
+nnoremap <leader>clt :colorscheme torte<cr>
+" nnoremap <leader>clj :colorscheme jellybeans<cr>
+" }}}
+"------------------------------->
 
 "-------------------------------
 " typescript-vim
 "-------------------------------
+" {{{
   let g:typescript_compiler_options = '--target es6'
 " let g:typescript_compiler_options = ''
   autocmd QuickFixCmdPost [^l]* nested cwindow
   autocmd QuickFixCmdPost    l* nested lwindow
-"-------------------------------
+" }}}
+"------------------------------->
 
 "-------------------------------
 " tsuquyomi

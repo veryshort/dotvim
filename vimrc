@@ -13,6 +13,11 @@
   "filetype plugin indent on
 "------------------------
 
+"-------------------------------
+" set
+"-------------------------------
+" {{{
+
 " set ci
 set smartindent
 " filetyp indent on
@@ -46,6 +51,9 @@ set laststatus=2
 " set statusline=
 " set statusline+=\ %f
 set hidden
+" }}}
+"-------------------------------<
+
 "-------------------------------
 " key mapping
 "-------------------------------
@@ -73,6 +81,8 @@ nnoremap Q 0yt=A<C-r>=<C-r>"<CR><Esc>
   nnoremap <c-n> :bn<cr>
 " nnoremap <c-p> :bp<cr>
 " nnoremap <c-m> :bp<cr>
+
+nnoremap q; q:
 " }}}
 "-------------------------------<
 
@@ -110,6 +120,7 @@ nnoremap Q 0yt=A<C-r>=<C-r>"<CR><Esc>
     nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lel
     inoremap jk <Esc>
     inoremap <esc> <nop>
+    cnoremap <esc> <nop>
 
   " 2018-04-22
     augroup filetype_python
@@ -134,6 +145,12 @@ nnoremap Q 0yt=A<C-r>=<C-r>"<CR><Esc>
     augroup END
 " }}}
 " }}}
+
+" function TextwidthIsTooWide()
+"   if &l:textwidth ># 80
+"     return 1
+"   endif
+" endfunction
 "------------------------------->
 
 

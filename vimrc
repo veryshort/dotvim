@@ -81,7 +81,7 @@ nnoremap Q 0yt=A<C-r>=<C-r>"<CR><Esc>
   inoremap <F5> <C-R>=strftime("%c")<CR>
 " 2018-04-19
   nnoremap <c-n> :bn<cr>
-" nnoremap <c-p> :bp<cr>
+  nnoremap <c-p> :bp<cr>
 " nnoremap <c-m> :bp<cr>
 
 nnoremap q; q:
@@ -92,6 +92,9 @@ nnoremap q; q:
 
   nnoremap j gj
   nnoremap k gk
+
+nnoremap <leader>v :cn<cr>
+nnoremap <leader>m :cp<cr>
 " }}}
 "-------------------------------<
 
@@ -150,6 +153,8 @@ nnoremap q; q:
     set statusline+=%l    " Current line
     set statusline+=/     " Separator
     set statusline+=%L    " Total lines
+
+    nnoremap <leader>g :silent execute "grep! -R " . shellescape(expand("<cWORD>")) " ."<cr>:copen<cr>
 " Vimscript file settings -------------------- {{{
     augroup filetype_vim
       autocmd!
@@ -174,6 +179,8 @@ nnoremap q; q:
   " 2018-04-21
     nnoremap <leader>cb :CtrlPBuffer<cr>
     nnoremap <leader>cr :CtrlPMRU<cr>
+
+    let g:ctrlp_map = ''
 " }}}
 "------------------------------->
 

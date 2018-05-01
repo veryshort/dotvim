@@ -5,12 +5,14 @@
 " 2018-04-22
 " http://vimcasts.org/episodes/synchronizing-plugins-with-git-submodules-and-pathogen/
 "------------------------
+" {{{
   "call pathogen#runtime_append_all_bundles()
   call pathogen#infect()
   call pathogen#helptags()
   "execute pathogen#infect()
   "syntax on
   "filetype plugin indent on
+" }}}
 "------------------------
 
 "-------------------------------
@@ -51,6 +53,7 @@ set laststatus=2
 " set statusline=
 " set statusline+=\ %f
 set hidden
+set relativenumber
 " }}}
 "-------------------------------<
 
@@ -71,7 +74,6 @@ nnoremap Q 0yt=A<C-r>=<C-r>"<CR><Esc>
 " 2018-04-12
   " nnoremap <C-X> :bro ol<CR>
   nnoremap <C-F2> :bro ol<CR>
-" inoremap jk <Esc>
   nnoremap <C-k> :bro ol<CR>
   inoremap kk <Esc>:bro ol<CR>
 " 2018-04-17
@@ -83,6 +85,13 @@ nnoremap Q 0yt=A<C-r>=<C-r>"<CR><Esc>
 " nnoremap <c-m> :bp<cr>
 
 nnoremap q; q:
+" Damian Conway, "More Instantly Better Vim" - OSCON 2013
+" 17:22/38:50 III. Cunning Linguistics
+  nnoremap ; :
+  nnoremap : ;
+
+  nnoremap j gj
+  nnoremap k gk
 " }}}
 "-------------------------------<
 
@@ -118,7 +127,9 @@ nnoremap q; q:
     iabbrev ssig -- <cr>Bongjoon Choi<cr>choibongjoon@gmail.com
   
     nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lel
-    inoremap jk <Esc>
+    " inoremap jk <Esc>
+    " inoremap <c-c> <esc>:set imdisable<cr>
+    " set noimd
     inoremap <esc> <nop>
     cnoremap <esc> <nop>
 
@@ -134,6 +145,7 @@ nnoremap q; q:
     augroup END
 
     set statusline=%f     " Path to the file
+    set statusline+=%m    " Modified flag
     set statusline+=%=    " Switch to the right side
     set statusline+=%l    " Current line
     set statusline+=/     " Separator
@@ -171,6 +183,8 @@ nnoremap <leader>ne :e.<cr>
 nnoremap <leader>clc :colorscheme CodeSchool3<cr>
 nnoremap <leader>cld :colorscheme dracula<cr>
 nnoremap <leader>clt :colorscheme torte<cr>
+nnoremap <leader>clk :colorscheme codedark<cr>
+" nnoremap <leader>clt :colorscheme darkeclipse<cr>
 " nnoremap <leader>clj :colorscheme jellybeans<cr>
 " }}}
 "------------------------------->
